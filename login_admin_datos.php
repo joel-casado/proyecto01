@@ -19,7 +19,7 @@
             <input type="submit" value="Iniciar Sesión">
         </form>
         <?php
-        // Mostrar mensaje de contraseña incorrecta si es necesario
+        // Mostrar mensaje de contraseña incorrecta
         if (isset($_GET["error"]) && $_GET["error"] === "contrasena") {
             echo '<p style="color: red;">Contraseña incorrecta.</p>';
         }

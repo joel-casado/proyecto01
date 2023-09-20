@@ -11,12 +11,12 @@ body {
     background-color: #7D9D9C;
     border-radius: 10px;
     padding: 20px;
-    width: 45%; /* Cambiado a un porcentaje del ancho del viewport */
+    width: 45%;
     text-align: center;
     display: grid;
     gap: 10px;
-    justify-items: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
+    justify-items: center;
+    align-items: center;
 }
 
 h2 {
@@ -29,7 +29,7 @@ label {
 
 input[type="text"],
 input[type="password"] {
-    width: 100%; /* 100% del ancho del contenedor */
+    width: 100%;
     padding: 10px;
     border: none;
     border-radius: 5px;

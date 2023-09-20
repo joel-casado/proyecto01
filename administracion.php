@@ -1,10 +1,10 @@
 <?php
-// Inicia la sesión (debe estar en la parte superior del archivo)
+// Inicio de sesión
 session_start();
 
-// Verifica si la sesión del administrador no está activa
+// Mira si el admin esta logado
 if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== true) {
-    // Si no está activa, muestra un mensaje y redirige después de 4 segundos
+    // Si no lo está se espera 4 secs y se va
     echo '<!DOCTYPE html>
     <html lang="es">
     <head>
@@ -20,7 +20,7 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
         </div>
     </body>
     </html>';
-    exit; // Asegura que el script se detenga después de mostrar el mensaje
+    exit; // Exit para parar script
 }
 ?>
 <!DOCTYPE html>
@@ -41,17 +41,17 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
             <div class="content-box">
                 <!-- Contenido dentro del primer div blanco -->
                 <a href="crear_curso.php">Crear Curso</a>
-                <a href="#">Modificar Curso</a>
-                <a href="#">Eliminar Curso</a>
+                <a href="modificar_curso.php">Modificar Curso</a>
+                <a href="eliminar_curso.php">Eliminar Curso</a>
             </div>
             <div class="title">
                 <h2>Gestión de Profesores</h2>
             </div>
             <div class="content-box">
                 <!-- Contenido dentro del segundo div blanco -->
-                <a href="#">Crear Profesor</a>
-                <a href="#">Modificar Profesor</a>
-                <a href="#">Eliminar Profesor</a>
+                <a href="crear_profesor.php">Crear Profesor</a>
+                <a href="modificar_profesor.php">Modificar Profesor</a>
+                <a href="eliminar_profesor.php">Eliminar Profesor</a>
             </div>
             <div class="logout-link">
                 <a href="destruir_sesion.php" class="logout">Cerrar Sesión</a>

@@ -27,7 +27,7 @@ body {
 }
 
 .title {
-    background-color: transparent; /* Fondo transparente para el titulo */
+    background-color: transparent;
     width: 100%;
     text-align: center;
     color: #000000;
@@ -41,7 +41,7 @@ body {
 .content-box {
     background-color: #FFFFFF;
     width: 100%;
-    max-width: 94%; /* Ajustado para dejar espacio para los margenes */
+    max-width: 94%; /* dejo espacio para los margenes */
     height: 250px;
     border-radius: 10px;
     display: flex;
@@ -51,25 +51,25 @@ body {
 }
 
 .content-box:first-child {
-    margin-top: -20px; /* Mover la primera caja hacia arriba */
+    margin-top: -20px; /* mover caja hacia arriba */
 }
 
 .content-box a {
     text-decoration: none;
     color: #000000;
-    width: 30%; /* Porcentaje del ancho del contenedor */
-    height: 40%; /* Porcentaje de la altura del contenedor */
+    width: 30%;
+    height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #D9D9D9;
     border-radius: 10px;
-    margin: 10px; /* Espacio entre los elementos <a> */
+    margin: 10px; /* espacio entre los <a> */
     transition: color 0.3s ease-in-out;
 }
 
 .content-box a:hover {
-    color: #584a97; /* Cambiar el color al hacer hover */
+    color: #584a97; /* cambiar el color al hacer hover */
 }
 
 .logout{
