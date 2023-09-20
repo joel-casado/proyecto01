@@ -2,16 +2,6 @@
 // Inicia la sesión (debe estar en la parte superior del archivo)
 session_start();
 
-// Verifica si se ha hecho clic en el enlace para destruir la sesión
-if (isset($_GET["logout"]) && $_GET["logout"] === "1") {
-    // Destruye la sesión
-    session_destroy();
-
-    // Redirige al formulario de inicio de sesión
-    header("Location: login.html");
-    exit; // Asegura que el script se detenga después de la redirección
-}
-
 // Verifica si la sesión del administrador no está activa
 if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== true) {
     // Si no está activa, muestra un mensaje y redirige después de 4 segundos
@@ -50,7 +40,7 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
             </div>
             <div class="content-box">
                 <!-- Contenido dentro del primer div blanco -->
-                <a href="#">Crear Curso</a>
+                <a href="crear_curso.php">Crear Curso</a>
                 <a href="#">Modificar Curso</a>
                 <a href="#">Eliminar Curso</a>
             </div>
