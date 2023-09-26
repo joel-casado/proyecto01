@@ -30,18 +30,20 @@ if ($mysqli->connect_error) {
 	die("Error en la conexión: " . $mysqli->connect_error);
 }
 
-// Verifica si se ha enviado una solicitud de eliminación
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_course"])) {
-	$codigo_curso = $_POST["delete_course"];
 
-	// Elimina el curso de la base de datos
-	$sql_delete = "DELETE FROM Cursos WHERE Codigo = '$codigo_curso'";
-	if ($mysqli->query($sql_delete) === TRUE) {
-    	$delete_message = "Curso eliminado exitosamente.";
-	} else {
-    	$delete_message = "Error al eliminar el curso: " . $mysqli->error;
-	}
+//Verifica si se ha pedido la modificacion
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["mark_inactive_course"])) {
+    $codigo_curso = $_POST["mark_inactive_course"];
+
+    // Actualiza el campo "estatus" a "inactivo" en la base de datos
+    $sql_update = "UPDATE Cursos SET estatus = 'inactivo' WHERE Codigo = '$codigo_curso'";
+    if ($mysqli->query($sql_update) === TRUE) {
+        $update_message = "Curso marcado como inactivo exitosamente.";
+    } else {
+        $update_message = "Error al marcar el curso como inactivo: " . $mysqli->error;
+    }
 }
+
 
 // Consulta todos los cursos de la base de datos
 $sql_select = "SELECT * FROM Cursos";
@@ -85,7 +87,12 @@ $mysqli->close();
                 	echo "<td>" . $row["Horas"] . "</td>";
                 	echo "<td>" . $row["Fecha_inicio"] . "</td>";
                 	echo "<td>" . $row["Fecha_fin"] . "</td>";
-                	echo '<td><form method="POST"><input type="hidden" name="delete_course" value="' . $row["Codigo"] . '"><button type="submit" onclick="return confirm(\'¿Estás seguro de eliminar este curso?\')">Borrar</button></form></td>';
+                	echo '<td>
+							<form method="POST">
+								<input type="hidden" name="mark_inactive_course" value="' . $row["Codigo"] . '">
+								<button type="submit" onclick="return confirm(\'¿Estás seguro de marcar este curso como inactivo?\')">Marcar como inactivo</button>
+							</form>
+						</td>';
                 	echo "</tr>";
             	}
             	?>
