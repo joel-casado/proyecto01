@@ -18,10 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Verificar si las credenciales corresponden a un estudiante
-    $sql = "SELECT DNI FROM Estudiantes WHERE DNI = '$usuario' AND Contraseña = '$contrasena'";
+    $sql = "SELECT DNI FROM Estudiantes WHERE DNI = '$usuario' AND Contrasena = '$contrasena'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
+        // Obtener el DNI del estudiante y guardarlo en la sesión
+        $row = $result->fetch_assoc();
+        $_SESSION["DNI_estudiante"] = $row["DNI"];
+        
         // Iniciar sesión de estudiante
         $_SESSION["tipo_usuario"] = "estudiante";
         header("Location: home_estudiante.php");
@@ -29,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Verificar si las credenciales corresponden a un profesor
-    $sql = "SELECT DNI FROM Profesores WHERE DNI = '$usuario' AND Contraseña = '$contrasena'";
+    $sql = "SELECT DNI FROM Profesores WHERE DNI = '$usuario' AND Contrasena = '$contrasena'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -43,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 
-// Si no se encontraron coincidencias, redirige de nuevo a la página de inicio de sesión
+// Si no se encontraron coincidencias, redirige de nuevo a la página de inicio de sesión con un mensaje de error
 header("Location: login.php?error=1");
 exit();
 ?>
