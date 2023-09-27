@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         echo "El DNI ya está registrado. Por favor, inicia sesión.";
+        header("Location: registro_estudiante.html");
         exit();
     }
 
@@ -48,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 } else {
     // Redirigir si se intenta acceder al archivo directamente sin enviar el formulario
-    header("Location: registro_estudiante.php");
+    header("Location: .registro_estudiante.html");
     exit();
 }
 ?>

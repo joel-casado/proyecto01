@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
     //Verificar si l'usuari ha visitat la pagina
     if(sessionStorage.getItem('visited', 'false')){
-        window.open('./web/Miniloto.html', '_blank');
+        window.open('web/Miniloto.html', '_blank');
     }
     else {
         //Marcar la pagina com visitada

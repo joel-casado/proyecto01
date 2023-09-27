@@ -65,6 +65,6 @@ $result = $conn->query($sql);
     <br>
     <a href="cursos.php">Inscribete a un curso ahora!</a>
     <br>
-    <a href="cerrar_sesion.php">Cerrar Sesión</a>
+    <a href="destruir_sesion.php">Cerrar Sesión</a>
 </body>
 </html>

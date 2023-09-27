@@ -43,7 +43,7 @@
                     while($row = $result->fetch_assoc()){
                         if ($row['estatus']== 'activo'){
                             echo "<div class='course'>".$row['Nombre']."</div>";
-
+                            echo "<a href='cursos_registrar.php?Codigo=".$row['Codigo']."'>Inscríbete</a>";
                             
                         }
                     }
