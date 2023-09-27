@@ -28,7 +28,7 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="administracion.scss">
+    <link rel="stylesheet" href="css/administracion.scss">
     <title>Tu Página</title>
 </head>
 <body>
@@ -54,7 +54,7 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
                 <a href="eliminar_profesor.php">Eliminar Profesor</a>
             </div>
             <div class="logout-link">
-                <a href="destruir_sesion.php" class="logout">Cerrar Sesión</a>
+                <a href="../destruir_sesion.php" class="logout">Cerrar Sesión</a>
             </div>
         </div>
     </div>

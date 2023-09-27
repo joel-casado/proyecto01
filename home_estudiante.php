@@ -62,7 +62,8 @@ $result = $conn->query($sql);
         }
         ?>
     </table>
-
+    <br>
+    <a href="cursos.php">Inscribete a un curso ahora!</a>
     <br>
     <a href="cerrar_sesion.php">Cerrar Sesión</a>
 </body>

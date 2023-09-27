@@ -26,7 +26,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ListadoCursos</title>
-    <link rel="stylesheet" href="./css/cursos.scss">
+    <link rel="stylesheet" href="css/cursos.scss">
 </head>
 <body>
     <div class="container">
@@ -41,14 +41,21 @@
             
                 if ($result->num_rows > 0){
                     while($row = $result->fetch_assoc()){
-                        echo "<div class='course'>".$row['Nombre']."</div>";
+                        if ($row['estatus']== 'activo'){
+                            echo "<div class='course'>".$row['Nombre']."</div>";
+
+                            
+                        }
                     }
                 }
                 else{
                     echo "No hi ha cursos disponibles";
                 }
+                // Cerrar la conexión a la base de datos
+                $conn->close();
             ?>
         </div>
+        <a href="home_estudiante.php">Volver</a>
     </div>
 </body>
 </html>

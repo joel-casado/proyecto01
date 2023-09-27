@@ -5,6 +5,6 @@ session_start();
 session_destroy();
 
 // Redirige al formulario de inicio de sesión
-header("Location: login_admin_datos.php");
+header("Location: login.html");
 exit; // Exit para parar el script
 ?>

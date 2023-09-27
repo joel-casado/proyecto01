@@ -48,6 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Si no se encontraron coincidencias, redirige de nuevo a la página de inicio de sesión con un mensaje de error
-header("Location: login.php?error=1");
+header("Location: login.html?error=1");
 exit();
 ?>
