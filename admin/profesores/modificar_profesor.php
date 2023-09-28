@@ -9,9 +9,9 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
     <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="refresh" content="4;url=../login_admin_datos.php">
+        <meta http-equiv="refresh" content="4;url=login_admin_datos.php">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="administracion.scss">
+        <link rel="stylesheet" href="../administracion.scss">
         <title>No tienes permiso</title>
     </head>
     <body>
@@ -66,7 +66,12 @@ $result = $conexion->query($query);
             echo "<td>" . $row["Titulacion"] . "</td>";
             // Mostrar la imagen usando una etiqueta <img> con la ruta de la imagen
             echo "<td><img src='" . $row["Fotografia"] . "' alt='Imagen del profesor' width='100'></td>";
-            echo "<td>" . $row["estatus"] . "</td>";
+            echo "<td>";
+            echo "<select name='estatus' id='estatus_" . $row["DNI"] . "' onchange='actualizarEstatus(\"" . $row["DNI"] . "\")'>";
+            echo "<option value='activo'" . ($row["estatus"] === 'activo' ? ' selected' : '') . ">Activo</option>";
+            echo "<option value='inactivo'" . ($row["estatus"] === 'inactivo' ? ' selected' : '') . ">Inactivo</option>";
+            echo "</select>";
+            echo "</td>";
             echo "<td><a href='editar_profesor.php?dni=" . $row["DNI"] . "&estatus=" . $row["estatus"] . "'>Editar</a></td>";
             echo "</tr>";
         }
@@ -75,6 +80,22 @@ $result = $conexion->query($query);
     <div class="return-button">
         <a href="../administracion.php">Volver atrás</a>
     </div>
+    <script>
+    function actualizarEstatus(DNI) {
+        const selectElement = document.getElementById('estatus_' + DNI);
+        const nuevoEstatus = selectElement.value;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '../funciones/actualizar_estatus_profesor.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log('Estatus actualizado en la base de datos.');
+            }
+        };
+        xhr.send('DNI=' + DNI + '&estatus=' + nuevoEstatus);
+    }
+    </script>
 </body>
 </html>
 
