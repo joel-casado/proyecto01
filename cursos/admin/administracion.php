@@ -40,18 +40,18 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
             </div>
             <div class="content-box">
                 <!-- Contenido dentro del primer div blanco -->
-                <a href="cursos/crear_curso.php">Crear Curso</a>
-                <a href="cursos/modificar_curso.php">Modificar Curso</a>
-                <a href="cursos/eliminar_curso.php">Eliminar Curso</a>
+                <a href="crear_curso.php">Crear Curso</a>
+                <a href="modificar_curso.php">Modificar Curso</a>
+                <a href="eliminar_curso.php">Eliminar Curso</a>
             </div>
             <div class="title">
                 <h2>Gestión de Profesores</h2>
             </div>
             <div class="content-box">
                 <!-- Contenido dentro del segundo div blanco -->
-                <a href="profesores/crear_profesor.php">Crear Profesor</a>
-                <a href="profesores/modificar_profesor.php">Modificar Profesor</a>
-                <a href="profesores/eliminar_profesor.php">Eliminar Profesor</a>
+                <a href="crear_profesor.php">Crear Profesor</a>
+                <a href="modificar_profesor.php">Modificar Profesor</a>
+                <a href="eliminar_profesor.php">Eliminar Profesor</a>
             </div>
             <div class="logout-link">
                 <a href="../destruir_sesion.php" class="logout">Cerrar Sesión</a>

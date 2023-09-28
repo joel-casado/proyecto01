@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // Iniciar sesión de estudiante
         $_SESSION["tipo_usuario"] = "estudiante";
-        header("Location: home_estudiante.php");
+        header("Location: student/home_estudiante.php");
         exit();
     }
 

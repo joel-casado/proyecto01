@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #E4DCCF;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-box {
+    background-color: #576F72;
+    width: 94%;
+    max-width: 1350px;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.title {
+    background-color: transparent;
+    width: 100%;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 0px; /* Espacio entre el título y la caja blanca */
+}
+
+.title h2 {
+    font-size: 24px;
+}
+
+.content-box {
+    background-color: #FFFFFF;
+    width: 100%;
+    max-width: 94%; /* dejo espacio para los margenes */
+    height: 250px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-box:first-child {
+    margin-top: -20px; /* mover caja hacia arriba */
+}
+
+.content-box a {
+    text-decoration: none;
+    color: #000000;
+    width: 30%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    margin: 10px; /* espacio entre los <a> */
+    transition: color 0.3s ease-in-out;
+}
+
+.content-box a:hover {
+    color: #584a97; /* cambiar el color al hacer hover */
+}
+
+.logout{
+    margin-top: 4%;
+    color: #000000;
+}

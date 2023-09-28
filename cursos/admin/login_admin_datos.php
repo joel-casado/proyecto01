@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h2>Iniciar Sesión</h2>
-        <form action="funciones/login_admin.php" method="POST">
+        <form action="login_admin.php" method="POST">
             <label for="usuario">Usuario:</label>
             <input type="text" id="usuario" name="usuario" required>
 
