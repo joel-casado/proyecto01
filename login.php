@@ -17,37 +17,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error de conexión: " . $conn->connect_error);
     }
 
-    // Verificar si las credenciales corresponden a un estudiante
-    $sql = "SELECT DNI FROM Estudiantes WHERE DNI = '$usuario' AND Contrasena = '$contrasena'";
+    // Verificar si las credenciales corresponden a un estudiante con contraseña encriptada
+    $sql = "SELECT DNI, Contrasena FROM Estudiantes WHERE DNI = '$usuario'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Obtener el DNI del estudiante y guardarlo en la sesión
         $row = $result->fetch_assoc();
-        $_SESSION["DNI_estudiante"] = $row["DNI"];
+        $hashed_password = $row["Contrasena"];
         
-        // Iniciar sesión de estudiante
-        $_SESSION["tipo_usuario"] = "estudiante";
-        header("Location: student/home_estudiante.php");
-        exit();
+        // Verificar la contraseña proporcionada con la contraseña encriptada en la base de datos
+        if (password_verify($contrasena, $hashed_password)) {
+            // Iniciar sesión de estudiante
+            $_SESSION["DNI_estudiante"] = $row["DNI"];
+            $_SESSION["tipo_usuario"] = "estudiante";
+            header("Location: student/home_estudiante.php");
+            exit();
+        }
     }
 
-    // Verificar si las credenciales corresponden a un profesor
-    $sql = "SELECT DNI FROM Profesores WHERE DNI = '$usuario' AND Contrasena = '$contrasena'";
+    // Verificar si las credenciales corresponden a un profesor con contraseña encriptada
+    $sql = "SELECT DNI, Contrasena FROM Profesores WHERE DNI = '$usuario'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Iniciar sesión de profesor
-        $_SESSION["tipo_usuario"] = "profesor";
-        header("Location: home_profesor.php");
-        exit();
+        $row = $result->fetch_assoc();
+        $hashed_password = $row["Contrasena"];
+        
+        // Verificar la contraseña proporcionada con la contraseña encriptada en la base de datos
+        if (password_verify($contrasena, $hashed_password)) {
+            // Iniciar sesión de profesor
+            $_SESSION["DNI_profesor"] = $row["DNI"];
+            $_SESSION["tipo_usuario"] = "profesor";
+            header("Location: home_profesor.php");
+            exit();
+        }
     }
 
-    // Cerrar la conexión a la base de datos
-    $conn->close();
+    // Si no se encontraron coincidencias en ninguna de las dos tablas, redirige con un mensaje de error
+    header("Location: home_estudiante.php");
+    exit();
 }
-
-// Si no se encontraron coincidencias, redirige de nuevo a la página de inicio de sesión con un mensaje de error
-header("Location: login.html?error=1");
-exit();
 ?>

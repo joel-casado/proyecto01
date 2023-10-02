@@ -36,15 +36,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Insertar el nuevo estudiante en la base de datos
-    $sql = "INSERT INTO Estudiantes (DNI, Nombre, Apellidos, Edad, Contrasena) VALUES ('$dni', '$nombre', '$apellidos', $edad, '$contrasena')";
+    // Encriptar la contraseña
+    $hashed_password = password_hash($contrasena, PASSWORD_DEFAULT);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Registro exitoso. Puedes iniciar sesión ahora.";
-        header("Location: ../login.html");
-        exit();
+    // Procesar la fotografía
+    $imgFolder = "img/"; // Carpeta donde se guardarán las fotografías
+    $imgName = $_FILES["fotografia"]["name"];
+    $imgPath = $imgFolder . $imgName;
+
+    // Mover la fotografía cargada a la carpeta destino
+    if (move_uploaded_file($_FILES["fotografia"]["tmp_name"], $imgPath)) {
+        // Insertar el nuevo estudiante en la base de datos con la contraseña encriptada y la ruta de la fotografía
+        $sql = "INSERT INTO Estudiantes (DNI, Nombre, Apellidos, Edad, Contrasena, Fotografia) VALUES ('$dni', '$nombre', '$apellidos', $edad, '$hashed_password', '$imgPath')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Registro exitoso. Puedes iniciar sesión ahora.";
+            header("Location: ../login.html");
+            exit();
+        } else {
+            echo "Error en el registro: " . $conn->error;
+        }
     } else {
-        echo "Error en el registro: " . $conn->error;
+        echo "Error al cargar la fotografía.";
     }
 
     // Cerrar la conexión a la base de datos
