@@ -20,43 +20,30 @@
     $fk_student = $_SESSION["DNI_estudiante"];
 
     //Operaciones de la tabla inscripciones
-    $sql = "SELECT * FROM inscripciones";
+    $sql = "SELECT * FROM inscripciones WHERE fk_estudiante = '$fk_student' AND fk_curso = '$fk_curso'";
     $result = mysqli_query($conn, $sql);
 
-    //Calcular el id de la nueva inscripción
-    $newID = mysqli_num_rows($result);
-    
-    //Conseguir un array de las inscripciones (chatgpt)
-    if ($result->num_rows > 0) {
-        while($array = $result->fetch_assoc()){
-            if ($array['fk_estudiante'] == $fk_student){
-                if($array['fk_curso'] == $fk_curso){
-                    // Redirigir al alumno
-                    echo "Registro ya existente.";
-                    header("Location: ../student/home_estudiante.php");
-                    exit();
-                }
-                else {
-                    //Insertar la nueva inscripción en la base de datos
-                    $newID++;
-                    $newsql = "INSERT INTO inscripciones (ID_inscripcion, fk_estudiante, fk_curso) VALUES ('$newID', '$fk_student', '$fk_curso')";
-            
-                    if ($conn->query($newsql) === TRUE) {
-                        // Redirigir al alumno luego de inscribir-se
-                        echo "Registro exitoso.";
-                        header("Location: ../student/home_estudiante.php");
-                        exit();
-                    } 
-                    else {
-                        echo "Error en el registro: " . $conn->error;
-                    }
-                }
-            }
-        }
-        //print_r($tabla);
-    } else {
-        echo "No se encontraron registros";
+    if($result->num_rows > 0){
+        // Redirigir al alumno
+        echo "Registro ya existente.";
+        header("Location: ../student/home_estudiante.php");
+        exit();
     }
+    else{
+        //Insertar la nueva inscripción en la base de datos
+        $newID++;
+        print_r($newID);
+        $newsql = "INSERT INTO inscripciones (fk_estudiante, fk_curso) VALUES ('$fk_student', '$fk_curso')";
 
+        if ($conn->query($newsql) === TRUE) {
+            // Redirigir al alumno luego de inscribir-se
+            echo "Registro exitoso.";
+            header("Location: ../student/home_estudiante.php");
+            exit();
+        } 
+        else {
+            echo "Error en el registro: " . $conn->error;
+        }
+    }
 
 ?>
